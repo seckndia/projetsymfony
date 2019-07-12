@@ -3,7 +3,7 @@
 {% block title %}Hello EmployerController!{% endblock %}
 
 {% block body %}
-<style>
+{# <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
@@ -16,5 +16,39 @@
         <li>Your controller at <code><a href="{{ '/home/dijaseck/Bureau/projetsymfony/projet1/src/Controller/EmployerController.php'|file_link(0) }}">src/Controller/EmployerController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/home/dijaseck/Bureau/projetsymfony/projet1/templates/employer/index.html.twig'|file_link(0) }}">templates/employer/index.html.twig</a></code></li>
     </ul>
-</div>
+</div> #}
+ <center><h1> La liste des employers</h1> </center>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Matricule</th>
+      <th scope="col">Nomcomplet</th>
+      <th scope="col">Date_naiss</th>
+      <th scope="col">Salaire</th>
+      <th scope="col">id_service</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for employer in employers %}
+  
+   <tr>
+   <td>{{employer.matricule}}</td>
+      <td>{{employer.nomcomplet}}</td>
+      <td>{{employer.dateNaiss | date('d/m/y')}}</td>
+    <td>{{employer.salaire}} FCF</td>
+    <td>{{employer.idService.libelle}}</td>
+     <td>
+     <button class="btn btn-primary btn-lg">
+     <a href="{{path('edit',{id:employer.id})}}">Modifier</a>
+     </td>
+     <td>
+     <button class="btn btn-danger btn-lg">
+     <a href="{{path('delt',{id:employer.id})}}">Supprimer</a>
+     </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
 {% endblock %}

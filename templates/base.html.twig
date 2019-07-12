@@ -12,7 +12,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="/">MySymfony</a>
+        <a class="navbar-brand" href="{{path('home')}}">MySymfony</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
             aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,17 +21,12 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-            <a class="nav-link active"  href="/employer">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link active"  href="{{path('employer')}}">listeEmployer<span class="sr-only">(current)</span></a>
              </li>
              <li class="nav-item">
-             <a class="nav-link" href="#">Features</a>
+             <a class="nav-link" href="{{path('employer_form')}}">AjouterEmployer</a>
              </li>
-             <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-         </li>
-         <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-         </li>
+          
     </ul>
             
         </div>

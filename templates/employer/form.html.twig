@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formemp 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<h1>création d'employer </h1>
+{{ form_start(formemp) }}
+
+{{ form_row(formemp.matricule) }}
+{{ form_row(formemp.nomcomplet)  }}
+{{ form_row(formemp.date_naiss)  }}
+{{ form_row(formemp.salaire ) }}
+{{ form_row(formemp.id_service) }}
+
+<button type="submit" class="btn-success">
+{% if editMode %}
+ Enregister Modification
+{% else %}
+Ajouter un employer
+ {% endif %} 
+</button>
+
+
+{{ form_end(formemp) }}
+
+
+{{form(formemp)}}
+
+
+
+{% endblock %}
