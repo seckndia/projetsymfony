@@ -82,10 +82,55 @@ public function delete(Employer $employer,ObjectManager $manager){
   
 $manager->remove($employer);
 $manager->flush();
+ $this->addFlash('danger','employer supprimé avec succés');
 
 return $this->redirectToRoute('employer',['employer'=>$employer]);
-return $this->addFlash('danger','employer supprimé avec succés');
 
 }
+/**
+ * @Route("/employer/serv",name="service_form")
+ * @Route("/employer/{id}editsev",name="editserv")
+
+ */
+public function formser(Service $service = null,Request $request,ObjectManager $manager){
+    if(!$service){
+        $service= new Service();
+       }
+          
+    $form=$this->createFormBuilder($service)
+                ->add('libelle')
+                
+                 ->getForm();
+    
+    $form->handleRequest($request);
+    
+    if($form->isSubmitted() && $form->isValid()){
+       $manager->persist($service);
+       $manager->flush();
+//    return $this->redirectToRoute('employer);
+      
+    }
+    $repo = $this->getDoctrine()->getRepository(Service::class);
+    $services = $repo->findAll();
+            return $this->render('employer/service.html.twig',[
+             'formserv' => $form->createView(),
+             'services' => $services ,
+              'editMode'=>$service->getId() !== null
+            ]);
+
+        }
+     /**
+     *  @Route("/employer/{id}delatesev",name="deltsev")
+     */
+public function deletesev(Service $service,ObjectManager $manager){
+  
+    $manager->remove($service);
+    $manager->flush();
+     $this->addFlash('danger','employer supprimé avec succés');
+    
+    return $this->redirectToRoute('employer',['service'=>$service]);
+    
+    }
+
 
 }
