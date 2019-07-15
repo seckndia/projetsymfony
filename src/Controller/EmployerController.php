@@ -126,7 +126,7 @@ public function deletesev(Service $service,ObjectManager $manager){
   
     $manager->remove($service);
     $manager->flush();
-     $this->addFlash('danger','employer supprimé avec succés');
+     $this->addFlash('danger','service supprimé avec succés');
     
     return $this->redirectToRoute('employer',['service'=>$service]);
     
